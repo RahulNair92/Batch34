@@ -18,7 +18,7 @@ public class AddSkillTest extends TestBase {
         SkillsPage skillPage = new SkillsPage(driver);
         skillPage.navigateToSkills();
         skillPage.addAndSaveSkill(skillName, description);
-        skillPage.checkNewSkill(skillName, description);
+        skillPage.verifySkill(skillName, description);
     }
 
 }

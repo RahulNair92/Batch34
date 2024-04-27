@@ -21,9 +21,10 @@ public class SkillsPage extends PageBase{
     public String nameFieldXpath = "(//input[@class='oxd-input oxd-input--active'])[2]";
     public String descriptionFieldXpath = "//textarea[@placeholder='Type description here']";
 
-    //public String saveButtonXpath = "//button[@class='oxd-button oxd-button--medium oxd-button--secondary orangehrm-left-space']";
     public String saveButtonId = "button[class='oxd-button oxd-button--medium oxd-button--secondary orangehrm-left-space']";
     public String checkSkillPartialXpath = "//div[@style='flex: 2 1 0%;']/following::div[text()='";
+    public String checkdescPartialXpath = "//div[@style='flex: 4 1 0%;']/following::div[text()='";
+
 
     public void navigateToSkills(){
         click(By.xpath(adminClickXpath));
@@ -46,9 +47,9 @@ public class SkillsPage extends PageBase{
 
     }
 
-    public void checkNewSkill(String skillName, String skillDescription){
+    public void verifySkill(String skillName, String skillDescription){
         String checkskillXpath = checkSkillPartialXpath + skillName + "']";
-        String checkdescripXPath = checkSkillPartialXpath + skillDescription + "']";
+        String checkdescripXPath = checkdescPartialXpath + skillDescription + "']";
         Assert.assertTrue(isElementVisible(By.xpath(checkskillXpath)));
         Assert.assertTrue(isElementVisible(By.xpath(checkdescripXPath)));
 
