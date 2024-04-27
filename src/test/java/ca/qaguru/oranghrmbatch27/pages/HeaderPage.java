@@ -7,7 +7,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Rectangle;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.apache.commons.logging.Log;
+
 
 import java.util.Arrays;
 import java.util.List;
