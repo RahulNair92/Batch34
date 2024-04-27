@@ -7,6 +7,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Rectangle;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.apache.commons.logging.Log;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,6 +28,7 @@ public class HeaderPage extends PageBase {
     public void selectMenu(String menu){//Admin|Job|Job Title
         List<String> menuItems = Arrays.asList(menu.split("\\|"));
         Dimension dimension = driver.manage().window().getSize();
+
         log.debug("Window size height :{}, width :{}", dimension.height,dimension.width);
         int menuLevel=0;
         for (String item:menuItems){

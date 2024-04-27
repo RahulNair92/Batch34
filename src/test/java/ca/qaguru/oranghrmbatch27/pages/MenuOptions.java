@@ -22,6 +22,8 @@ public class MenuOptions {
     public static final String MEMBERSHIPS = "Admin|Qualifications |Memberships";
     public static final String CUSTOMERS = "Time|Project Info |Customers";
     public static final String PROJECTS = "Time|Project Info|Projects";
+    public static final String LOCATIONS = "Admin|Organization |Locations";
+
 
 
 }
