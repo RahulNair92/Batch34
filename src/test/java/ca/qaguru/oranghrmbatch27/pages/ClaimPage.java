@@ -26,8 +26,6 @@ public class ClaimPage extends PageBase {
     private final String jobCategorySaveBtn = "//button[@type='submit']";
     private final String mainmenu = "//span[text()='Claim']";
     private final String mymenu="(//div[@class='oxd-topbar-body']/nav/ul/li/a)[2]";
-    private final String abcd="//div[contains(@class,'oxd-table-filter-header-title')]";
-    private final String x="//div[@class='oxd-topbar-header-title']/span/h6";
 
 
     public void get_menu()
