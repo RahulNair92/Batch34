@@ -15,6 +15,4 @@ public class SearchClaimRecordwithIdTest extends TestBase {
         search.verifyclaimrecord();
 
     }
-
-
 }

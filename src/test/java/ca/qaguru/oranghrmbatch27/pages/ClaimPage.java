@@ -44,7 +44,6 @@ public class ClaimPage extends PageBase {
         WebElement textField = driver.findElement(By.xpath(txtNameField));
         textField.sendKeys("202307180000003");
         click(By.xpath(jobCategorySaveBtn));
-
     }
 
     public void verifyclaimrecord() {
