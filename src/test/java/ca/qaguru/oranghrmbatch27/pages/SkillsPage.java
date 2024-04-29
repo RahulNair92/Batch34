@@ -2,9 +2,14 @@ package ca.qaguru.oranghrmbatch27.pages;
 
 import ca.qaguru.oranghrmbatch27.library.PageBase;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.time.Duration;
 
 public class SkillsPage extends PageBase{
 
@@ -24,6 +29,9 @@ public class SkillsPage extends PageBase{
     public String saveButtonId = "button[class='oxd-button oxd-button--medium oxd-button--secondary orangehrm-left-space']";
     public String checkSkillPartialXpath = "//div[@style='flex: 2 1 0%;']/following::div[text()='";
     public String checkdescPartialXpath = "//div[@style='flex: 4 1 0%;']/following::div[text()='";
+
+    public String editButtonXPathLastPart = "']//following::i[@class='oxd-icon bi-pencil-fill']";
+    //div[text()='Selenium']//following::i[@class='oxd-icon bi-pencil-fill']
 
 
     public void navigateToSkills(){
@@ -52,6 +60,30 @@ public class SkillsPage extends PageBase{
         String checkdescripXPath = checkdescPartialXpath + skillDescription + "']";
         Assert.assertTrue(isElementVisible(By.xpath(checkskillXpath)));
         Assert.assertTrue(isElementVisible(By.xpath(checkdescripXPath)));
+
+    }
+
+    public void editSkill(String oldSkillName, String newSkillName, String oldSkillDescription, String newSkillDescription){
+        String checkSkillXpath = checkSkillPartialXpath + oldSkillName + "']";
+        String editbuttonXpath = checkSkillPartialXpath + oldSkillName + editButtonXPathLastPart;
+        if (isElementPresent(By.xpath(checkSkillXpath))){
+            click(By.xpath(editbuttonXpath));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath(nameFieldXpath)));
+            WebElement namefield = driver.findElement(By.xpath(nameFieldXpath));
+            WebElement descriptionfield = driver.findElement(By.xpath(descriptionFieldXpath));
+            namefield.sendKeys(Keys.CONTROL + "a");
+            namefield.sendKeys(Keys.DELETE);
+            setText(By.xpath(nameFieldXpath), newSkillName);
+            descriptionfield.sendKeys(Keys.CONTROL + "a");
+            descriptionfield.sendKeys(Keys.DELETE);
+            setText(By.xpath(descriptionFieldXpath), newSkillDescription);
+            click(By.cssSelector(saveButtonId));
+
+        }
+        else{
+            System.out.println("Skill not present");
+        }
 
     }
 
