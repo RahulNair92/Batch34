@@ -26,6 +26,8 @@ public class ClaimPage extends PageBase {
     private final String jobCategorySaveBtn = "//button[@type='submit']";
     private final String mainmenu = "//span[text()='Claim']";
     private final String mymenu="(//div[@class='oxd-topbar-body']/nav/ul/li/a)[2]";
+    private final String drop="(//div[@class='oxd-select-text--after']//i[@class='oxd-icon bi-caret-down-fill oxd-select-text--arrow'])[1]";
+    private final String option="(//div[@class='oxd-select-wrapper']//div[@class='oxd-select-dropdown --positon-bottom']//div[@class='oxd-select-option'])[2]//span[contains(text(),'Accommodation')]";
 
 
     public void get_menu()
@@ -37,7 +39,7 @@ public class ClaimPage extends PageBase {
         click(By.xpath(mymenu));
 
     }
-    public void searchRecord() throws InterruptedException {
+    public void searchRecordId() throws InterruptedException {
         click(By.xpath(Droplist));
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(txtNameField)));
@@ -45,14 +47,36 @@ public class ClaimPage extends PageBase {
         textField.sendKeys("202307180000003");
         click(By.xpath(jobCategorySaveBtn));
     }
+    public void searchRecordName() throws InterruptedException {
+        click(By.xpath(Droplist));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+       // wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(drop)));
+        click(By.xpath(drop));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(option)));
+        driver.findElement(By.xpath(option)).click();
 
-    public void verifyclaimrecord() {
-        String finalXpath = "//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span";
-        boolean is_Visible = isElementPresent(By.xpath(finalXpath));
+       // click(By.xpath(option));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(jobCategorySaveBtn)));
+        click(By.xpath(jobCategorySaveBtn));
+    }
+
+    public void verifyclaimrecordID() {
+
+        String final1="//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span";
+        boolean is_Visible = isElementPresent(By.xpath(final1));
         Assert.assertTrue(is_Visible);
         WebElement x=driver.findElement(By.xpath("//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span"));
         String msg=x.getText();
         System.out.println("Got the message as "+msg);
+    }
+    public void verifyclaimrecordName() {
+        String final2="//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span";
+        boolean is_Visible = isElementPresent(By.xpath(final2));
+        Assert.assertTrue(is_Visible);
+        WebElement x=driver.findElement(By.xpath("//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span"));
+        String msg=x.getText();
+        System.out.println("Got the message as "+msg);
+
     }
 }
 
