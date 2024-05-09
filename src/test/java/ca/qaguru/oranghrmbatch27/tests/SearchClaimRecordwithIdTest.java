@@ -11,8 +11,8 @@ public class SearchClaimRecordwithIdTest extends TestBase {
         loginPage.login("Admin","admin123",true,null);
         ClaimPage search = new ClaimPage(driver);
         search.get_menu();
-        search.searchRecord();
-        search.verifyclaimrecord();
+        search.searchRecordId();
+        search.verifyclaimrecordID();
 
     }
 }
