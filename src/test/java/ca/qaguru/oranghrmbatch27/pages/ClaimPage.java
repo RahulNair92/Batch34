@@ -29,6 +29,12 @@ public class ClaimPage extends PageBase {
     private final String mymenu="(//div[@class='oxd-topbar-body']/nav/ul/li/a)[2]";
     private final String drop="(//div[@class='oxd-select-text--after']//i[@class='oxd-icon bi-caret-down-fill oxd-select-text--arrow'])[1]";
     private final String option="//span[contains(text(),'Accommodation')]";
+    private final String final1="//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span";
+    private final String z="//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span";
+    private final String final2="//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span";
+
+    private final String z1="//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span";
+
 
 
     public void get_menu()
@@ -59,18 +65,18 @@ public class ClaimPage extends PageBase {
 
     public void verifyclaimrecordID() {
 
-        String final1="//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span";
+
         boolean is_Visible = isElementPresent(By.xpath(final1));
         Assert.assertTrue(is_Visible);
-        WebElement x=driver.findElement(By.xpath("//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span"));
+        WebElement x=driver.findElement(By.xpath(z));
         String msg=x.getText();
         System.out.println("Got the message as "+msg);
     }
     public void verifyclaimrecordName() {
-        String final2="//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span";
+
         boolean is_Visible = isElementPresent(By.xpath(final2));
         Assert.assertTrue(is_Visible);
-        WebElement x=driver.findElement(By.xpath("//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span"));
+        WebElement x=driver.findElement(By.xpath(z1));
         String msg=x.getText();
         System.out.println("Got the message as "+msg);
 
