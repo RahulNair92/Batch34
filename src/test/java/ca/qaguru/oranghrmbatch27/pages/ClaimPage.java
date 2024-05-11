@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -27,7 +28,7 @@ public class ClaimPage extends PageBase {
     private final String mainmenu = "//span[text()='Claim']";
     private final String mymenu="(//div[@class='oxd-topbar-body']/nav/ul/li/a)[2]";
     private final String drop="(//div[@class='oxd-select-text--after']//i[@class='oxd-icon bi-caret-down-fill oxd-select-text--arrow'])[1]";
-    private final String option="(//div[@class='oxd-select-wrapper']//div[@class='oxd-select-dropdown --positon-bottom']//div[@class='oxd-select-option'])[2]//span[contains(text(),'Accommodation')]";
+    private final String option="//span[contains(text(),'Accommodation')]";
 
 
     public void get_menu()
@@ -49,13 +50,9 @@ public class ClaimPage extends PageBase {
     }
     public void searchRecordName() throws InterruptedException {
         click(By.xpath(Droplist));
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-       // wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(drop)));
-        click(By.xpath(drop));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(drop)));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(option)));
-        driver.findElement(By.xpath(option)).click();
-
-       // click(By.xpath(option));
+        click(By.xpath(option));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(jobCategorySaveBtn)));
         click(By.xpath(jobCategorySaveBtn));
     }

@@ -1,18 +1,19 @@
 package ca.qaguru.oranghrmbatch27.tests;
 
 import ca.qaguru.oranghrmbatch27.library.TestBase;
-import ca.qaguru.oranghrmbatch27.pages.*;
+import ca.qaguru.oranghrmbatch27.pages.ClaimPage;
+import ca.qaguru.oranghrmbatch27.pages.LoginPage;
 import org.testng.annotations.Test;
 
-public class SearchClaimRecordwithIdTest extends TestBase {
+public class SearchRecordwithNameTest extends TestBase {
     @Test
-    public void searchClaimRecordwithId() throws InterruptedException {
+    public void SearchrecordwithNameTest() throws InterruptedException {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login("Admin","admin123",true,null);
         ClaimPage search = new ClaimPage(driver);
         search.get_menu();
-        search.searchRecordId();
-        search.verifyclaimrecordID();
+        search.searchRecordName();
+        search.verifyclaimrecordName();
 
     }
 }
