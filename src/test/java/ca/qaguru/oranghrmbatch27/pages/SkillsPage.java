@@ -31,7 +31,7 @@ public class SkillsPage extends PageBase{
     public String checkdescPartialXpath = "//div[@style='flex: 4 1 0%;']/following::div[text()='";
 
     public String editButtonXPathLastPart = "']//following::i[@class='oxd-icon bi-pencil-fill']";
-    //div[text()='Selenium']//following::i[@class='oxd-icon bi-pencil-fill']
+
 
 
     public void navigateToSkills(){
@@ -68,17 +68,10 @@ public class SkillsPage extends PageBase{
         String editbuttonXpath = checkSkillPartialXpath + oldSkillName + editButtonXPathLastPart;
         if (isElementPresent(By.xpath(checkSkillXpath))){
             click(By.xpath(editbuttonXpath));
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath(nameFieldXpath)));
-            WebElement namefield = driver.findElement(By.xpath(nameFieldXpath));
-            WebElement descriptionfield = driver.findElement(By.xpath(descriptionFieldXpath));
-            namefield.sendKeys(Keys.CONTROL + "a");
-            namefield.sendKeys(Keys.DELETE);
-            setText(By.xpath(nameFieldXpath), newSkillName);
-            descriptionfield.sendKeys(Keys.CONTROL + "a");
-            descriptionfield.sendKeys(Keys.DELETE);
-            setText(By.xpath(descriptionFieldXpath), newSkillDescription);
+            clearAndEnterText(By.xpath(nameFieldXpath), newSkillName);
+            clearAndEnterText(By.xpath(descriptionFieldXpath), newSkillDescription);
             click(By.cssSelector(saveButtonId));
+
 
         }
         else{
