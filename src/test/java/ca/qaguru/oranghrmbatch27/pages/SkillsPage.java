@@ -18,7 +18,7 @@ public class SkillsPage extends PageBase{
         super(_driver);
         driver = _driver;
     }
-
+    public String skillsTextXpath = "//h6[text()='Skills']";
     public String adminClickXpath = "//span[text()='Admin']";
     public String qualificationsClickXpath = "//span[text()='Qualifications ']";
     public String skillsLinkXpath = "//a[text()='Skills']";
@@ -27,10 +27,15 @@ public class SkillsPage extends PageBase{
     public String descriptionFieldXpath = "//textarea[@placeholder='Type description here']";
 
     public String saveButtonId = "button[class='oxd-button oxd-button--medium oxd-button--secondary orangehrm-left-space']";
-    public String checkSkillPartialXpath = "//div[@style='flex: 2 1 0%;']/following::div[text()='";
-    public String checkdescPartialXpath = "//div[@style='flex: 4 1 0%;']/following::div[text()='";
+    public String checkSkillPartialXpath = "//div[@style='flex: 2 1 0%;']//following::div[text()='";
+    public String checkdescPartialXpath = "//div[@style='flex: 4 1 0%;']//following::div[text()='";
 
     public String editButtonXPathLastPart = "']//following::i[@class='oxd-icon bi-pencil-fill']";
+    public String deleteButtonXPathLastPart = "']//following::i[@class='oxd-icon bi-trash']";
+    public String yesDeleteID = "button[class='oxd-button oxd-button--medium oxd-button--label-danger orangehrm-button-margin']";
+    public String skillCheckBoxXPathLastPart = "']//ancestor::div[@class='oxd-table-row oxd-table-row--with-border']//descendant::span[contains(@class,'label-right oxd-checkbox-input')]";
+    public String deleteSelectedButtonID = "i[class='oxd-icon bi-trash-fill oxd-button-icon']";
+    public String cancelButtonID = "button[class='oxd-button oxd-button--medium oxd-button--ghost']";
 
 
 
@@ -62,6 +67,11 @@ public class SkillsPage extends PageBase{
         Assert.assertTrue(isElementVisible(By.xpath(checkdescripXPath)));
 
     }
+    public void verifySkillNotPresent(String skillName){
+        String checkskillXpath = checkSkillPartialXpath + skillName + "']";
+        Assert.assertFalse(isElementVisible(By.xpath(checkskillXpath)));
+
+    }
 
     public void editSkill(String oldSkillName, String newSkillName, String oldSkillDescription, String newSkillDescription){
         String checkSkillXpath = checkSkillPartialXpath + oldSkillName + "']";
@@ -78,6 +88,51 @@ public class SkillsPage extends PageBase{
             System.out.println("Skill not present");
         }
 
+    }
+    public void cancelEditingSkill(String oldSkillName, String newSkillName, String oldSkillDescription, String newSkillDescription){
+        String checkSkillXpath = checkSkillPartialXpath + oldSkillName + "']";
+        String editbuttonXpath = checkSkillPartialXpath + oldSkillName + editButtonXPathLastPart;
+        if (isElementPresent(By.xpath(checkSkillXpath))){
+            click(By.xpath(editbuttonXpath));
+            clearAndEnterText(By.xpath(nameFieldXpath), newSkillName);
+            clearAndEnterText(By.xpath(descriptionFieldXpath), newSkillDescription);
+            click(By.cssSelector(cancelButtonID));
+
+
+        }
+        else{
+            System.out.println("Skill not present");
+        }
+
+    }
+    public void deleteASkill(String skillName){
+        String checkSkillXpath = checkSkillPartialXpath + skillName + "']";
+        String deletebuttonXpath = checkSkillPartialXpath + skillName + deleteButtonXPathLastPart;
+        if (isElementPresent(By.xpath(checkSkillXpath))){
+            click(By.xpath(deletebuttonXpath));
+            click(By.cssSelector(yesDeleteID));
+        }
+        else{
+            System.out.println("Skill not present");
+        }
+
+    }
+    public void deleteMultipleSkills(String[] skillNames){
+        for(String skillName : skillNames){
+            String checkSkillXpath = checkSkillPartialXpath + skillName + "']";
+            String skillCheckBoxXpath = checkSkillPartialXpath + skillName + skillCheckBoxXPathLastPart;
+            if (isElementPresent(By.xpath(checkSkillXpath))){
+                scrollInToView(By.xpath(checkSkillXpath));
+                click(By.xpath(skillCheckBoxXpath));
+            }
+            else{
+                System.out.println(skillName + ", not present.");
+            }
+        }
+
+        scrollInToView(By.xpath(skillsTextXpath));
+        click(By.cssSelector(deleteSelectedButtonID));
+        click(By.cssSelector(yesDeleteID));
     }
 
 }
