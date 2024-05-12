@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -32,8 +31,7 @@ public class ClaimPage extends PageBase {
     private final String final1="//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span";
     private final String z="//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span";
     private final String final2="//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span";
-
-    private final String z1="//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span";
+    private final String zz="//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span";
 
 
 
@@ -56,7 +54,8 @@ public class ClaimPage extends PageBase {
     }
     public void searchRecordName() throws InterruptedException {
         click(By.xpath(Droplist));
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(drop)));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(drop)));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(option)));
         click(By.xpath(option));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(jobCategorySaveBtn)));
@@ -76,7 +75,7 @@ public class ClaimPage extends PageBase {
 
         boolean is_Visible = isElementPresent(By.xpath(final2));
         Assert.assertTrue(is_Visible);
-        WebElement x=driver.findElement(By.xpath(z1));
+        WebElement x=driver.findElement(By.xpath(zz));
         String msg=x.getText();
         System.out.println("Got the message as "+msg);
 
