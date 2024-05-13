@@ -27,12 +27,14 @@ public class ClaimPage extends PageBase {
     private final String mainmenu = "//span[text()='Claim']";
     private final String mymenu="(//div[@class='oxd-topbar-body']/nav/ul/li/a)[2]";
     private final String drop="(//div[@class='oxd-select-text--after']//i[@class='oxd-icon bi-caret-down-fill oxd-select-text--arrow'])[1]";
+    private final String drop1="(//div[@class='oxd-select-text--after']//i[@class='oxd-icon bi-caret-down-fill oxd-select-text--arrow'])[2]";
     private final String option="//span[contains(text(),'Accommodation')]";
+    private final String option2="//span[contains(text(),'Submitted')]";
     private final String final1="//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span";
     private final String z="//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span";
     private final String final2="//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span";
     private final String zz="//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span";
-
+    private final String final3="//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span";
 
 
     public void get_menu()
@@ -61,9 +63,15 @@ public class ClaimPage extends PageBase {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(jobCategorySaveBtn)));
         click(By.xpath(jobCategorySaveBtn));
     }
+    public void searchRecordStatus() throws InterruptedException {
+        click(By.xpath(drop1));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(option2)));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(jobCategorySaveBtn)));
+        click(By.xpath(jobCategorySaveBtn));
+    }
 
     public void verifyclaimrecordID() {
-
 
         boolean is_Visible = isElementPresent(By.xpath(final1));
         Assert.assertTrue(is_Visible);
@@ -78,7 +86,14 @@ public class ClaimPage extends PageBase {
         WebElement x=driver.findElement(By.xpath(zz));
         String msg=x.getText();
         System.out.println("Got the message as "+msg);
+    }
+    public void verifyclaimrecordStatus() {
 
+        boolean is_Visible = isElementPresent(By.xpath(final3));
+        Assert.assertTrue(is_Visible);
+        WebElement x = driver.findElement(By.xpath(final3));
+        String msg = x.getText();
+        System.out.println("Got the message as " + msg);
     }
 }
 
