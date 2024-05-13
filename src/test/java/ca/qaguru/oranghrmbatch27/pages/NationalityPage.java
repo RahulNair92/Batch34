@@ -1,5 +1,4 @@
 package ca.qaguru.oranghrmbatch27.pages;
-
 import ca.qaguru.oranghrmbatch27.library.PageBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,13 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
 import java.time.Duration;
 
-public class NationalityPage extends PageBase
-{
-    public NationalityPage(WebDriver driver)
-    {
+public class NationalityPage extends PageBase {
+    public NationalityPage(WebDriver driver) {
         super(driver);
     }
     private final String nationalityAddBtn = "//button[@class='oxd-button oxd-button--medium oxd-button--secondary']";
@@ -24,18 +20,12 @@ public class NationalityPage extends PageBase
     private final String ClassCustomerTable = "oxd-table-body";
     private final String nationalityEditBtn = "(//i[contains(@class,'pencil')])[1]";
     private final String txtNameField = "//div[@class='oxd-input-group__label-wrapper']//following::input";
-    private final String  nationalityDeleteBtn = "(//i[contains(@class,'trash')])[1]";
-    private final String  nationalityConfDeleteBtn ="(//i[contains(@class,'oxd-icon bi-trash oxd-button-icon')])";
+    private final String nationalityDeleteBtn = "(//i[contains(@class,'trash')])[1]";
+    private final String nationalityConfDeleteBtn = "(//i[contains(@class,'oxd-icon bi-trash oxd-button-icon')])";
+    private final String deleteSelectedBtn = "(//i[contains(@class,'oxd-icon bi-trash-fill oxd-button-icon')])";
+    private final String nationalitySelectionChkBox = "(//span[@class='oxd-checkbox-input oxd-checkbox-input--active --label-right oxd-checkbox-input'])[2]";
 
-  // private final String nationalitySelectionChkBox ="(//div[contains(@class,'oxd-table-cell oxd-padding-cell')])[2]";
-   private final String nationalitySelectionChkBox ="(//i[contains(@class,'oxd-icon bi-check oxd-checkbox-input-icon')])[2]";
-    //private final String nationalitySelectionChkBox ="//input[@type='checkbox'][1]";
-    private final String nationalityDeleteSelectedBtn ="(//i[contains(@class, 'oxd-icon bi-trash-fill oxd-button-icon')])";
-
-
-
-    public void addNewNationality(String newNationalityName)
-    {
+    public void addNewNationality(String newNationalityName) {
         click(By.xpath(nationalityAddBtn));
         setText(By.cssSelector(nationalityName), newNationalityName);
         click(By.xpath(nationalitySaveBtn));
@@ -43,8 +33,7 @@ public class NationalityPage extends PageBase
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(ClassCustomerTable)));
     }
 
-    public void editNationality()
-    {
+    public void editNationality() {
         click(By.xpath(nationalityEditBtn));
         new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(txtNameField)));
         WebElement textField = driver.findElement(By.xpath(txtNameField));
@@ -54,26 +43,23 @@ public class NationalityPage extends PageBase
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(ClassCustomerTable)));
     }
 
-    public void deleteNationality()
-    {
-
+    public void deleteNationality() {
         click(By.xpath(nationalityDeleteBtn));
+        click(By.xpath(nationalityConfDeleteBtn));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(ClassCustomerTable)));
+    }
+
+    public void deleteNationalityUsingChkBox() {
+        click(By.xpath(nationalitySelectionChkBox));
+        click(By.xpath(deleteSelectedBtn));
         click(By.xpath(nationalityConfDeleteBtn));
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(ClassCustomerTable)));
 
     }
-
-    public void deleteNationalityUsingChkBox()
-    {
-        WebElement checkBox = driver.findElement(By.xpath(nationalitySelectionChkBox));
-        checkBox.click();
-        click(By.xpath(nationalityDeleteSelectedBtn));
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(ClassCustomerTable)));
-    }
-
-
-
-
 }
+
+
+
+
