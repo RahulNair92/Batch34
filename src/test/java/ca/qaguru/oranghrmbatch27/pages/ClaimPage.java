@@ -35,7 +35,10 @@ public class ClaimPage extends PageBase {
     private final String final2="//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span";
     private final String zz="//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span";
     private final String final3="//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span";
-
+    private final String viewDetails="(//button[@class='oxd-button oxd-button--medium oxd-button--text oxd-table-cell-action-space'])[2]";
+    private final String heading="//h6[text()='Submit Claim']";
+    private final String submitBtn="(//button//i[contains(text(),'')])[4]";
+    private final String heading1="//h6[text()='Create Claim Request']";
 
     public void get_menu()
     {
@@ -70,6 +73,17 @@ public class ClaimPage extends PageBase {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(jobCategorySaveBtn)));
         click(By.xpath(jobCategorySaveBtn));
     }
+    public void viewDetails() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(viewDetails)));
+        click(By.xpath(viewDetails));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(heading)));
+    }
+    public void submitclaim() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(submitBtn)));
+        click(By.xpath(submitBtn));
+    }
 
     public void verifyclaimrecordID() {
 
@@ -95,5 +109,20 @@ public class ClaimPage extends PageBase {
         String msg = x.getText();
         System.out.println("Got the message as " + msg);
     }
+    public void verifyViewDetails() {
+        boolean is_Visible = isElementPresent(By.xpath(heading));
+        Assert.assertTrue(is_Visible);
+        WebElement x = driver.findElement(By.xpath(heading));
+        String msg = x.getText();
+        System.out.println("Got the Heading as " + msg);
+    }
+    public void verifySubmit() {
+        boolean is_Visible = isElementPresent(By.xpath(heading1));
+        Assert.assertTrue(is_Visible);
+        WebElement x = driver.findElement(By.xpath(heading1));
+        String msg = x.getText();
+        System.out.println("Got the Page Heading as " + msg);
+    }
+
 }
 
