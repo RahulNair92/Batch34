@@ -9,9 +9,9 @@ public class SearchLocationTest extends TestBase {
     public void searchLocationName(){
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login("Admin","admin123",true,null);
-        HeaderPage headerPage = new HeaderPage(driver);
-        headerPage.selectMenu(MenuOptions.LOCATIONS);
+
         SearchLocationPage searchLocationPage= new SearchLocationPage(driver);
+        searchLocationPage.navigateToLocations();
         searchLocationPage.searchName("Canadian Regional HQ");
     }
 }

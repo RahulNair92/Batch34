@@ -16,10 +16,19 @@ import java.time.Duration;
 
         private final String NamefieldName = "//*[@id='app']/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[1]/div/div[2]/input";
         private final String Search = "//button[@type='submit']";
-        private final String Locations = "//a[text()='Locations']";
-
+        private final String locationsXpath = "//a[text()='Locations']";
         private final String recordFound = "//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']/span";
+        public String adminClickXpath = "//span[text()='Admin']";
 
+
+        public String organizationsClickXpath = "//span[text()= 'Organization ']";
+
+
+        public void navigateToLocations(){
+            click(By.xpath(adminClickXpath));
+            click(By.xpath(organizationsClickXpath));
+            click(By.xpath(locationsXpath));
+        }
         public void searchName(String Name) {
             setText(By.xpath(NamefieldName), Name);
             click(By.xpath(Search));
