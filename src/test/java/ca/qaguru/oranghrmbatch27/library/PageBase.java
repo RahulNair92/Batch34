@@ -10,7 +10,10 @@ import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
+
+import static java.awt.SystemColor.text;
 
 @Slf4j
 public abstract class PageBase {
@@ -337,4 +340,16 @@ public abstract class PageBase {
         }
         return null;
     }
+
+    public void clearAndEnterText(By by, String text){
+        WebElement element = new WebDriverWait(driver,Duration.ofSeconds(WAIT_TIME))
+                .until(ExpectedConditions
+                        .elementToBeClickable(by));
+        element.sendKeys(Keys.CONTROL+"a");
+        element.sendKeys(Keys.DELETE);
+        element.sendKeys(text);
+
+    }
+
 }
+
