@@ -80,5 +80,27 @@ public class LanguagesPage extends PageBase {
 
     }
 
+    public void cancelEditLanguage() {
+        click(By.xpath(editLanguageBtn));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(editLanguageNameFld)));
+
+        WebElement languageField = driver.findElement(By.xpath(editLanguageNameFld));
+        languageField.clear();
+        WebDriverWait customWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        languageField.sendKeys("-Sample Edit");
+        click(By.xpath(editLanguageCancelBtn));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(languagesTable)));
+
+    }
+
+    public void verifyAndDeleteLanguage() {
+        click(By.xpath(deleteLanguageBtn));
+        click(By.xpath(confirmDelete));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(languagesTable)));
+    }
+
+
 
 }
