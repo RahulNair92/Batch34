@@ -94,6 +94,7 @@ public class LanguagesPage extends PageBase {
 
     }
 
+
     public void verifyAndDeleteLanguage() {
         click(By.xpath(deleteLanguageBtn));
         click(By.xpath(confirmDelete));
