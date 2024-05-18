@@ -95,4 +95,13 @@ public class LanguagesPage extends PageBase {
     }
 
 
+    public void verifyAndDeleteLanguage() {
+        click(By.xpath(deleteLanguageBtn));
+        click(By.xpath(confirmDelete));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(languagesTable)));
+    }
+
+
+
 }
